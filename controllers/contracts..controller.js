@@ -71,11 +71,11 @@ const getAllContractsOwner = async (req, res) => {
         ownerId: id, 
       }
     });
-    console.log(product.id);
+    console.log(product[0].id);
     
-    const contracts = await Products.findAll({
+    const contracts = await Contracts.findAll({
       where: {
-        productId: product.id,
+        productId: product?.[0]?.id ,
       },
       include: [Clients, Products, Status],
     });

@@ -30,9 +30,27 @@ const Products = sequelize.define("products", {
   description: {
     type: DataTypes.TEXT,
   },
+  categoryId: {
+    type: DataTypes.BIGINT,
+    allowNull: true,
+    references: {
+      model: "categories",
+      key: "id",
+    },
+  },
+  ownerId: {
+    type: DataTypes.BIGINT,
+    allowNull: true,
+    references: {
+      model: "owners",
+      key: "id",
+    },
+  },
 });
-Products.belongsTo(Categories);
-Categories.hasMany(Products);
-Products.belongsTo(Owners);
-Owners.hasMany(Products);
+
+Products.belongsTo(Categories, { foreignKey: "categoryId" });
+Categories.hasMany(Products, { foreignKey: "categoryId" });
+Products.belongsTo(Owners, { foreignKey: "ownerId" });
+Owners.hasMany(Products, { foreignKey: "ownerId" });
+
 module.exports = Products;

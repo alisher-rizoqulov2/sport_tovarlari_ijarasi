@@ -8,6 +8,7 @@ const { adminValidation } = require("../validation/admin.validation");
 const uuid = require("uuid");
 const mailService = require("../services/mail.service");
 const logger = require("../services/logger.service");
+const ApiError = require("../helpers/api.error");
 
 const registerAdmin = async (req, res) => {
   try {
